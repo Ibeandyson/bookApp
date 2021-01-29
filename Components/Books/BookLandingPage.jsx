@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {View, Text, StyleSheet, ActivityIndicator, FlatList} from 'react-native';
 import Books from './Books';
 import NewestBook from './NewestBook';
+import BottomNav from "../Navigation/BottomNav"
 import axios from 'axios';
 
 const BookLandingPage = props => {
@@ -110,10 +111,11 @@ const BookLandingPage = props => {
                 initialNumToRender={10}
                 keyExtractor={item => item.id}
                 onEndReachedThreshold={0.5}
-                ListHeaderComponent={<Books />}
+                ListHeaderComponent={<Books {...props} />}
                 renderItem={(item, index) => <NewestBook item={item} key={item.index} {...props} />}
                 ListFooterComponent={_renderFooter }
             />
+            <BottomNav/>
         </View>
     );
 };

@@ -1,11 +1,8 @@
 import React, {useState} from 'react';
-import {View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity} from 'react-native';
+import {View, Text, StyleSheet, ImageBackground, TextInput, TouchableOpacity,ScrollView KeyboardAvoidingView} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 
-
-
-
-const SignIn =  () => { 
+const SignIn = props => {
     const [data, setData] = useState({
         secureTextEntry: true
     });
@@ -19,10 +16,8 @@ const SignIn =  () => {
     };
 
     return (
-        <View>
-
-
-            <View>
+       
+            <ScrollView>
                 <ImageBackground
                     imageStyle={{
                         resizeMode: 'cover'
@@ -36,13 +31,14 @@ const SignIn =  () => {
                     <Text style={style.subIntro}>
                         <Text style={style.subIntroText}>Join our community</Text>
                     </Text>
+
                     <View style={style.form}>
                         <View style={style.inputContainer}>
                             <Text style={style.formText}>Log in</Text>
                             <View style={style.inputRap}>
                                 <TextInput placeholder="Email" style={style.inputEmail} />
                             </View>
-
+            
                             <View style={style.inputRap}>
                                 <TextInput
                                     placeholder="Password"
@@ -51,22 +47,23 @@ const SignIn =  () => {
                                 />
                                 <TouchableOpacity onPress={updateSecureTextEntry}>
                                     {data.secureTextEntry ? (
-                                        <Feather name="eye" color="grey" size={20}   style={{marginTop: 15}}/>
+                                        <Feather name="eye" color="grey" size={20} style={{marginTop: 15}} />
                                     ) : (
                                         <Feather name="eye-off" color="grey" size={20} style={{marginTop: 15}} />
                                     )}
                                 </TouchableOpacity>
                             </View>
 
-                            <TouchableOpacity style={style.btn}>
+                            <TouchableOpacity
+                                style={style.btn}
+                                onPress={() => props.navigation.navigate('BookLandingPage')}>
                                 <Text style={style.btnText}>Sign in</Text>
                             </TouchableOpacity>
-                            
                         </View>
                     </View>
                 </ImageBackground>
-            </View>
-        </View>
+            </ScrollView>
+       
     );
 };
 
@@ -118,7 +115,7 @@ const style = StyleSheet.create({
     },
     inputEmail: {
         marginLeft: 20,
-        width: '80%',
+        width: '80%'
     },
     inputPassword: {
         width: '80%',

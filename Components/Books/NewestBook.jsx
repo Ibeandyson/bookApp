@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, Image, StyleSheet, ScrollView} from 'react-native';
+import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import StarRating from 'react-native-star-rating';
 
@@ -13,16 +13,17 @@ const NewestBook = props => {
             starCount: rating
         });
     };
-    console.log(props.item.item);
     return (
         <View>
             <View style={style.books}>
-                <Image
-                    style={style.bookImage}
-                    source={{
-                        uri: imageUrl
-                    }}
-                />
+                <TouchableOpacity onPress={() => props.navigation.navigate('BookInfo', {item: props.item.item})}>
+                    <Image
+                        style={style.bookImage}
+                        source={{
+                            uri: imageUrl
+                        }}
+                    />
+                </TouchableOpacity>
                 <View style={{flexDirection: 'column'}}>
                     <View style={{flexDirection: 'row'}}>
                         <Text ellipsizeMode="clip" numberOfLines={1} style={style.bookName}>
