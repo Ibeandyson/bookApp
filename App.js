@@ -14,17 +14,21 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import SignIn from './Components/Auth/SignIn'
 import BookLandingPage from "./Components/Books/BookLandingPage"
+import BookInfo from './Components/Books/BookInfo';
 
 const Stack = createStackNavigator();
 
-const App = () => {
+const App = (props) => {
   return (
     <View style={style.container}>
                   <StatusBar barStyle="light-content" hidden={false} backgroundColor="black" translucent={true} />
       <NavigationContainer>
-      <Stack.Navigator>
-        {/* <Stack.Screen name="login"  options={{ headerShown: false }} component={SignIn} /> */}
-        <Stack.Screen name="BookLandingPage"  options={{ headerShown: false }} component={BookLandingPage } />
+      <Stack.Navigator
+       initialRouteName="Login"
+      >
+        <Stack.Screen name="Login"  options={{ headerShown: false }} component={SignIn} />
+        <Stack.Screen name="BookLandingPage"  options={{ headerShown: false }} component={BookLandingPage} />
+        <Stack.Screen name="BookInfo"  options={{ headerShown: false }} component={BookInfo} />
       </Stack.Navigator>
     </NavigationContainer>
     </View>
